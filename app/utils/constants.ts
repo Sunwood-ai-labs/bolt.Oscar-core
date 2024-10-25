@@ -2,10 +2,11 @@ export const WORK_DIR_NAME = 'project';
 export const WORK_DIR = `/home/${WORK_DIR_NAME}`;
 export const MODIFICATIONS_TAG_NAME = 'bolt_file_modifications';
 export const MODEL_REGEX = /^\[Model: (.*?)\]\n\n/;
-export const DEFAULT_MODEL = "claude-3-5-sonnet-20240620";
+export const DEFAULT_MODEL = "claude-3-5-sonnet-20241022";
 export const DEFAULT_PROVIDER = "Anthropic";
 export const MODEL_LIST = [
     { name: 'claude-3-5-sonnet-20240620', label: 'Claude 3.5 Sonnet', provider: 'Anthropic' },
+    { name: 'claude-3-5-sonnet-20241022', label: 'Claude 3.5 Sonnet V2', provider: 'Anthropic' },
     { name: 'gpt-4o', label: 'GPT-4o', provider: 'OpenAI' },
     { name: 'qwen2.5-coder:7b', label: 'Qwen 2.5 Coder 7b', provider: 'Ollama' },
     { name: 'qwen2.5-coder:1.5b', label: 'Qwen 2.5 Coder 1.5b', provider: 'Ollama' },

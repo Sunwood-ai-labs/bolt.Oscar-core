@@ -1,100 +1,282 @@
-[![Bolt.new: AI-Powered Full-Stack Web Development in the Browser](./public/social_preview_index.jpg)](https://bolt.new)
+<p align="center">
+  <img src="docs/bolt.Oscar.core.png" width="100%">
+  <h1 align="center">🌟 bolt.Oscar-Core 🌟</h1>
+</p>
+<p align="center">
+  <a href="https://github.com/Sunwood-ai-labs/bolt.Oscar-core">
+    <img alt="GitHub Repo" src="https://img.shields.io/badge/github-HarmonAI__III-blue?logo=github">
+  </a>
+  <a href="https://github.com/Sunwood-ai-labs/bolt.Oscar-core/blob/main/LICENSE">
+    <img alt="License" src="https://img.shields.io/github/license/Sunwood-ai-labs/bolt.Oscar-core?color=green">
+  </a>
+  <a href="https://github.com/Sunwood-ai-labs/bolt.Oscar-core/stargazers">
+    <img alt="GitHub stars" src="https://img.shields.io/github/stars/Sunwood-ai-labs/bolt.Oscar-core?style=social">
+  </a>
+  <a href="https://github.com/Sunwood-ai-labs/bolt.Oscar-core/releases">
+    <img alt="GitHub release" src="https://img.shields.io/github/v/release/Sunwood-ai-labs/bolt.Oscar-core?include_prereleases&style=flat-square">
+  </a>
+</p>
+<h2 align="center">
+  ～ AI駆動型フルスタック Web開発コアテンプレート ～
 
-# Bolt.new: AI-Powered Full-Stack Web Development in the Browser
+<a href="https://github.com/Sunwood-ai-labs/bolt.Oscar-core/blob/main/README.md"><img src="https://img.shields.io/badge/ドキュメント-日本語-white.svg" alt="JA doc"/></a>
+<a href="https://github.com/Sunwood-ai-labs/bolt.Oscar-core/blob/main/docs/README.en.md"><img src="https://img.shields.io/badge/english-document-white.svg" alt="EN doc"></a>
+</h2>
+<p align="center">
+  <img src="https://img.shields.io/badge/Node.js-339933?style=for-the-badge&logo=node.js" alt="Node.js">
+  <img src="https://img.shields.io/badge/TypeScript-3178C6?style=for-the-badge&logo=typescript" alt="TypeScript">
+  <img src="https://img.shields.io/badge/React-61DAFB?style=for-the-badge&logo=react" alt="React">
+  <img src="https://img.shields.io/badge/Vite-646CFF?style=for-the-badge&logo=vite" alt="Vite">
+  <img src="https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=github" alt="GitHub">
+  <img src="https://img.shields.io/badge/WebContainers-000000?style=for-the-badge" alt="WebContainers">
+</p>
 
-Bolt.new is an AI-powered web development agent that allows you to prompt, run, edit, and deploy full-stack applications directly from your browser—no local setup required. If you're here to build your own AI-powered web dev agent using the Bolt open source codebase, [click here to get started!](./CONTRIBUTING.md)
+> [!IMPORTANT]
+> bolt.Oscar-coreは、[Bolt.new](https://github.com/stackblitz/bolt.new)を活用して開発された、AI駆動型Web開発環境のためのテンプレートです。このリポジトリは、独自のAI開発エージェントを構築するプロセスを簡素化することを目的としています。
 
-## What Makes Bolt.new Different
+## 🚀 プロジェクト概要
 
-Claude, v0, etc are incredible- but you can't install packages, run backends or edit code. That’s where Bolt.new stands out:
+bolt.Oscar-coreは、Bolt.newをベースにしたAI駆動型Web開発環境を構築するためのテンプレートです。ブラウザから直接フルスタックアプリケーションを作成、実行、デプロイするために必要な基本機能を提供します。バージョン0.1.0では、WebContainersを使用したAI駆動開発のための基本インフラストラクチャの確立に焦点を当てています。
 
-- **Full-Stack in the Browser**: Bolt.new integrates cutting-edge AI models with an in-browser development environment powered by **StackBlitz’s WebContainers**. This allows you to:
-  - Install and run npm tools and libraries (like Vite, Next.js, and more)
-  - Run Node.js servers
-  - Interact with third-party APIs
-  - Deploy to production from chat
-  - Share your work via a URL
+## ✨ 主な機能
 
-- **AI with Environment Control**: Unlike traditional dev environments where the AI can only assist in code generation, Bolt.new gives AI models **complete control** over the entire  environment including the filesystem, node server, package manager, terminal, and browser console. This empowers AI agents to handle the entire app lifecycle—from creation to deployment.
+- WebContainersを活用したフルスタック開発環境
+- 統合されたAIモデルサポート（Anthropic、OpenAI、Groq、Ollama）
+- リアルタイムのパッケージインストールと管理
+- Node.jsサーバーの実行機能
+- ブラウザベースの開発環境
+- 最新のWebフレームワークとツールのサポート
 
-Whether you’re an experienced developer, a PM or designer, Bolt.new allows you to build production-grade full-stack applications with ease.
+## 🔧 はじめ方
 
-For developers interested in building their own AI-powered development tools with WebContainers, check out the open-source Bolt codebase in this repo!
-
-## Prerequisites
-
-Before you begin, ensure you have the following installed:
-
+### 前提条件
 - Node.js (v20.15.1)
 - pnpm (v9.4.0)
+- Chrome Canary（ローカル開発に必要）
 
-## Setup
+### セットアップ手順
 
-1. Clone the repository (if you haven't already):
-
+1. リポジトリのクローン:
 ```bash
-git clone https://github.com/stackblitz/bolt.new
+git clone https://github.com/Sunwood-ai-labs/bolt.Oscar-core
+cd bolt.Oscar-core
 ```
 
-2. Install dependencies:
-
+2. 依存関係のインストール:
 ```bash
 pnpm install
 ```
 
-3. Rename `.env.example` to .env.local and add your LLM API keys (you only have to set the ones you want to use and Ollama doesn't need an API key because it runs locally on your computer):
+3. 環境変数の設定:
+```bash
+cp .env.example .env.local
+```
 
+.env.localにLLM APIキーを追加:
 ```
 GROQ_API_KEY=XXX
 OPENAI_API_KEY=XXX
 ANTHROPIC_API_KEY=XXX
 ```
 
-Optionally, you can set the debug level:
-
-```
-VITE_LOG_LEVEL=debug
-```
-
-**Important**: Never commit your `.env.local` file to version control. It's already included in .gitignore.
-
-## Adding New LLMs:
-
-To make new LLMs available to use in this version of Bolt.new, head on over to `app/utils/constants.ts` and find the constant MODEL_LIST. Each element in this array is an object that has the model ID for the name (get this from the provider's API documentation), a lable for the frontend model dropdown, and the provider. 
-
-By default, Anthropic, OpenAI, Groq, and Ollama are implemented as providers, but the YouTube video for this repo covers how to extend this to work with more providers if you wish!
-
-When you add a new model to the MODEL_LIST array, it will immediately be available to use when you run the app locally or reload it. For Ollama models, make sure you have the model installed already before trying to use it here!
-
-## Available Scripts
-
-- `pnpm run dev`: Starts the development server.
-- `pnpm run build`: Builds the project.
-- `pnpm run start`: Runs the built application locally using Wrangler Pages. This script uses `bindings.sh` to set up necessary bindings so you don't have to duplicate environment variables.
-- `pnpm run preview`: Builds the project and then starts it locally, useful for testing the production build. Note, HTTP streaming currently doesn't work as expected with `wrangler pages dev`.
-- `pnpm test`: Runs the test suite using Vitest.
-- `pnpm run typecheck`: Runs TypeScript type checking.
-- `pnpm run typegen`: Generates TypeScript types using Wrangler.
-- `pnpm run deploy`: Builds the project and deploys it to Cloudflare Pages.
-
-## Development
-
-To start the development server:
-
+4. 開発サーバーの起動:
 ```bash
 pnpm run dev
 ```
 
-This will start the Remix Vite development server. You will need Google Chrome Canary to run this locally! It's a very easy install and a good browser for web development anyway.
+## 📦 プロジェクト構成
 
-## Tips and Tricks
+```plaintext
+├─ app/
+│  ├─ components/     # Reactコンポーネント
+│  ├─ hooks/         # カスタムReactフック
+│  ├─ utils/         # ユーティリティ関数
+│  ├─ models/        # AIモデル統合
+│  ├─ containers/    # WebContainer設定
+├─ public/           # 静的アセット
+├─ scripts/          # ビルドとデプロイスクリプト
+├─ tests/           # テストファイル
+├─ types/           # TypeScript型定義
+```
 
-Here are some tips to get the most out of Bolt.new:
+## 🛠️ 利用可能なスクリプト
 
-- **Be specific about your stack**: If you want to use specific frameworks or libraries (like Astro, Tailwind, ShadCN, or any other popular JavaScript framework), mention them in your initial prompt to ensure Bolt scaffolds the project accordingly.
+- `pnpm run dev`: 開発サーバーの起動
+- `pnpm run build`: プロジェクトのビルド
+- `pnpm run preview`: プロダクションビルドのプレビュー
+- `pnpm test`: テストの実行
+- `pnpm run typecheck`: TypeScript型チェックの実行
 
-- **Use the enhance prompt icon**: Before sending your prompt, try clicking the 'enhance' icon to have the AI model help you refine your prompt, then edit the results before submitting.
+## 🔄 新しいAIモデルの追加
 
-- **Scaffold the basics first, then add features**: Make sure the basic structure of your application is in place before diving into more advanced functionality. This helps Bolt understand the foundation of your project and ensure everything is wired up right before building out more advanced functionality.
+新しいAIモデルを追加するには、`app/utils/constants.ts`を修正します：
 
-- **Batch simple instructions**: Save time by combining simple instructions into one message. For example, you can ask Bolt to change the color scheme, add mobile responsiveness, and restart the dev server, all in one go saving you time and reducing API credit consumption significantly.
+```typescript
+export const MODEL_LIST = [
+  {
+    name: "model-id",
+    label: "モデル表示名",
+    provider: "プロバイダー名"
+  }
+  // さらにモデルを追加
+];
+```
+
+## 🌿 開発のヒント
+
+- ローカル開発にはChrome Canaryを使用
+- デバッグログを有効にするには`VITE_LOG_LEVEL=debug`を設定
+- より良いAI対話のためにプロンプト強化機能を活用
+- 複雑な機能を追加する前に基本的なスカフォールディングから始める
+
+
+## 🐳 Docker開発ガイド
+
+### Dockerファイルの構成
+
+プロジェクトには以下の Docker 関連ファイルが含まれています：
+
+1. `Dockerfile`:
+```dockerfile
+FROM node:latest
+
+WORKDIR /app
+
+COPY . .
+RUN rm -rf node_modules
+
+# Install pnpm globally
+RUN npm install -g pnpm
+
+# Install dependencies
+RUN pnpm install
+
+# Make sure bindings.sh is executable
+RUN chmod 777 bindings.sh
+
+EXPOSE 5173
+
+CMD pnpm run dev
+```
+
+2. `docker-compose.yml`:
+```yaml
+version: '3.8'
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: 498218886114.dkr.ecr.ap-northeast-1.amazonaws.com/bolt-oscar-app:latest
+    ports:
+      - "8788:8788"
+      - "5173:5173"
+    environment:
+      - NODE_ENV=development
+    command: pnpm run dev
+```
+
+### 🏗️ Dockerイメージのビルドとプッシュ
+
+#### DockerHubへのプッシュ
+
+1. ローカルでイメージをビルド:
+```bash
+# 最新バージョン
+docker build -t bolt:latest .
+
+# 特定のバージョン
+docker build --no-cache -t bolt:v0.3.3 .
+```
+
+2. DockerHubのタグを付与:
+```bash
+docker tag bolt:v0.3.3 makisunwood/bolt:v0.3.3
+```
+
+3. DockerHubにプッシュ:
+```bash
+docker push makisunwood/bolt:v0.3.3
+```
+
+#### Amazon ECRへのプッシュ
+
+1. ECRリポジトリの作成:
+```bash
+aws ecr create-repository --repository-name bolt-oscar-app --region ap-northeast-1
+```
+
+2. ECRへのログイン:
+```bash
+aws ecr get-login-password --region ap-northeast-1 | docker login --username AWS --password-stdin 498218886114.dkr.ecr.ap-northeast-1.amazonaws.com
+```
+
+3. ECR用のタグ付け:
+```bash
+docker tag bolt-oscar-app:latest 498218886114.dkr.ecr.ap-northeast-1.amazonaws.com/bolt-oscar-app:latest
+```
+
+4. ECRへプッシュ:
+```bash
+docker push 498218886114.dkr.ecr.ap-northeast-1.amazonaws.com/bolt-oscar-app:latest
+```
+
+### 🔄 ローカルでのDocker実行
+
+Dockerイメージをローカルで実行するには：
+
+```bash
+# Docker Composeを使用する場合
+docker-compose up
+
+# 直接Dockerを使用する場合
+docker run -p 5173:5173 bolt:latest
+```
+
+> [!TIP]
+> - 開発時は `docker-compose up` の使用を推奨します
+> - プロダクション用のイメージをビルドする際は、必ず `--no-cache` オプションを使用してください
+> - バージョン管理のため、`:latest` タグの代わりに具体的なバージョンタグを使用することを推奨します
+
+## 🔍 トラブルシューティング
+
+### よくある問題と解決方法
+
+1. ポートの競合:
+```bash
+# 使用中のポートを確認
+lsof -i :5173
+# 競合するプロセスの終了
+kill -9 <PID>
+```
+
+2. パーミッションエラー:
+```bash
+# bindings.shの実行権限を確認
+ls -l bindings.sh
+# 必要に応じて権限を付与
+chmod +x bindings.sh
+```
+
+## 🤝 コントリビューション
+
+1. リポジトリをフォーク
+2. 機能ブランチを作成 (`git checkout -b feature/amazing-feature`)
+3. 変更をコミット (`git commit -m '素晴らしい機能を追加'`)
+4. ブランチにプッシュ (`git push origin feature/amazing-feature`)
+5. プルリクエストを作成
+
+## 📄 ライセンス
+
+bolt.Oscar-coreは[MITライセンス](LICENSE)の下で公開されています。
+
+## 🙏 謝辞
+
+- オリジナルのインスピレーションを提供してくださった[Bolt.new](https://github.com/stackblitz/bolt.new)チーム
+- WebContainers技術を提供してくださった[StackBlitz](https://stackblitz.com/)
+- すべてのコントリビューターとコミュニティメンバー
+
+---
+
+bolt.Oscar-coreで、あなただけのAI駆動開発環境を構築しましょう！
