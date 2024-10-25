@@ -1,3 +1,5 @@
+// @ts-nocheck
+// Preventing TS checks with files presented in the video for a better presentation.
 import type { Message } from 'ai';
 import React, { type RefCallback } from 'react';
 import { ClientOnly } from 'remix-utils/client-only';
@@ -5,10 +7,21 @@ import { Menu } from '~/components/sidebar/Menu.client';
 import { IconButton } from '~/components/ui/IconButton';
 import { Workbench } from '~/components/workbench/Workbench.client';
 import { classNames } from '~/utils/classNames';
+import { MODEL_LIST } from '~/utils/constants';
 import { Messages } from './Messages.client';
 import { SendButton } from './SendButton.client';
 
 import styles from './BaseChat.module.scss';
+
+const EXAMPLE_PROMPTS = [
+  { text: 'Build a todo app in React using Tailwind' },
+  { text: 'Build a simple blog using Astro' },
+  { text: 'Create a cookie consent form using Material UI' },
+  { text: 'Make a space invaders game' },
+  { text: 'How do I center a div?' },
+];
+
+const TEXTAREA_MIN_HEIGHT = 76;
 
 interface BaseChatProps {
   textareaRef?: React.RefObject<HTMLTextAreaElement> | undefined;
@@ -21,23 +34,13 @@ interface BaseChatProps {
   enhancingPrompt?: boolean;
   promptEnhanced?: boolean;
   input?: string;
+  model: string;
+  setModel: (model: string) => void;
   handleStop?: () => void;
   sendMessage?: (event: React.UIEvent, messageInput?: string) => void;
   handleInputChange?: (event: React.ChangeEvent<HTMLTextAreaElement>) => void;
   enhancePrompt?: () => void;
-  selectedModel: string;
-  setSelectedModel: React.Dispatch<React.SetStateAction<string>>;
 }
-
-const EXAMPLE_PROMPTS = [
-  { text: 'Build a todo app in React using Tailwind' },
-  { text: 'Build a simple blog using Astro' },
-  { text: 'Create a cookie consent form using Material UI' },
-  { text: 'Make a space invaders game' },
-  { text: 'How do I center a div?' },
-];
-
-const TEXTAREA_MIN_HEIGHT = 76;
 
 export const BaseChat = React.forwardRef<HTMLDivElement, BaseChatProps>(
   (
@@ -52,12 +55,12 @@ export const BaseChat = React.forwardRef<HTMLDivElement, BaseChatProps>(
       promptEnhanced = false,
       messages,
       input = '',
+      model,
+      setModel,
       sendMessage,
       handleInputChange,
       enhancePrompt,
       handleStop,
-      selectedModel,
-      setSelectedModel,
     },
     ref,
   ) => {
@@ -90,21 +93,6 @@ export const BaseChat = React.forwardRef<HTMLDivElement, BaseChatProps>(
                 'h-full flex flex-col': chatStarted,
               })}
             >
-              <div className="flex justify-center items-center p-2">
-                {/* モデル選択用のセレクトボックス */}
-                <select
-                  value={selectedModel}
-                  onChange={(e) => setSelectedModel(e.target.value)}
-                  className="p-0.5 border rounded bg-black text-white text-sm"
-                >
-                  <option value="claude">Claude 3.5</option>
-                  <option value="gpt-4o">OpenAI GPT-4o</option>
-                  <option value="o1-preview">OpenAI o1-preview</option>
-                  <option value="o1-mini">OpenAI o1-mini</option>
-                  <option value="bedrock">AWS Bedrock Claude</option>
-                  <option value="gemini" disabled>gemini-pro(not implemented)</option>
-                </select>
-              </div>
               <ClientOnly>
                 {() => {
                   return chatStarted ? (
@@ -122,6 +110,20 @@ export const BaseChat = React.forwardRef<HTMLDivElement, BaseChatProps>(
                   'sticky bottom-0': chatStarted,
                 })}
               >
+                {/* Model selection dropdown */}
+                <div className="mb-2">
+                  <select
+                    value={model}
+                    onChange={(e) => setModel(e.target.value)}
+                    className="w-full p-2 rounded-lg border border-bolt-elements-borderColor bg-bolt-elements-prompt-background text-bolt-elements-textPrimary focus:outline-none"
+                  >
+                    {MODEL_LIST.map((modelOption) => (
+                      <option key={modelOption.name} value={modelOption.name}>
+                        {modelOption.label}
+                      </option>
+                    ))}
+                  </select>
+                </div>
                 <div
                   className={classNames(
                     'shadow-sm border border-bolt-elements-borderColor bg-bolt-elements-prompt-background backdrop-filter backdrop-blur-[8px] rounded-lg overflow-hidden',
@@ -152,7 +154,6 @@ export const BaseChat = React.forwardRef<HTMLDivElement, BaseChatProps>(
                     placeholder="How can Bolt help you today?"
                     translate="no"
                   />
-
                   <ClientOnly>
                     {() => (
                       <SendButton

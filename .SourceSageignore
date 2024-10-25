@@ -70,10 +70,9 @@ node_modules
 package.json
 pnpm-lock.yaml
 
-utils
-types
-styles
-components
-runtime
+
 eslint.config.mjs
 uno.config.ts
+variables.scss
+*.scss
+editor

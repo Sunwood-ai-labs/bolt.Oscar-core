@@ -1,0 +1,22 @@
+version: '3.8'
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: 498218886114.dkr.ecr.ap-northeast-1.amazonaws.com/bolt-oscar-app:latest
+    ports:
+      - "8788:8788"
+      - "5173:5173"
+    # volumes:
+    #   - .:/app
+      # - /app/node_modules
+    environment:
+      - NODE_ENV=development
+    command: pnpm run dev
+
+# aws ecr create-repository --repository-name bolt-oscar-app --region ap-northeast-1
+# aws ecr get-login-password --region ap-northeast-1 | docker login --username AWS --password-stdin 498218886114.dkr.ecr.ap-northeast-1.amazonaws.com
+# docker tag bolt-oscar-app:latest 498218886114.dkr.ecr.us-east-1.amazonaws.com/bolt-oscar-app:latest
+# docker push 498218886114.dkr.ecr.ap-northeast-1.amazonaws.com/bolt-oscar-app:latest
