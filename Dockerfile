@@ -12,6 +12,7 @@ RUN npm install -g pnpm
 
 # Install dependencies
 RUN pnpm install
+RUN pnpm build
 
 # Make sure bindings.sh is executable
 RUN chmod 777 bindings.sh
@@ -19,7 +20,8 @@ RUN chmod 777 bindings.sh
 EXPOSE 5173
 
 # Use shell form of CMD to allow variable expansion and script execution
-CMD pnpm run dev
+# CMD pnpm run dev
+CMD pnpm run start
 #
 # docker build -t bolt:latest .
 # docker build --no-cache -t bolt:v0.3.3 .
